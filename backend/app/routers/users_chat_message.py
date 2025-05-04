@@ -22,7 +22,7 @@ class UpdateChatRequest(BaseModel):
     n: int
     incr: int
 
-@router.post("", response_model=List[ChatMessage])
+@router.get("/{chat_id}", response_model=List[ChatMessage])
 async def get_all_messages_by_chat(
      chat: ChatRequest
 ):
@@ -32,7 +32,7 @@ async def get_all_messages_by_chat(
         raise HTTPException(status_code=404, detail="No messages found")
     return messages
 
-@router.post("/n", response_model=List[ChatMessage])
+@router.get("/n/{chat_id}", response_model=List[ChatMessage])
 async def get_n_messages_by_chat(
     chat: UpdateChatRequest,
 ):
